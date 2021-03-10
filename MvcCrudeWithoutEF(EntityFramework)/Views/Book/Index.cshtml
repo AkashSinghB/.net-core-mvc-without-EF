@@ -1,45 +1,46 @@
-﻿@model IEnumerable<MvcCrudeWithoutEF_EntityFramework_.Models.BookViewModel>
+﻿@model System.Data.DataTable;
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "List of Books";
 }
 
-<h1>Index</h1>
+<div class="jumbotron">
+    <h1 class="">@ViewData["Title"]</h1>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
-    <thead>
+    <thead class="thead-light">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                Book Title
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Author)
+               Author
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Price
             </th>
-            <th></th>
+            <th>
+                <a asp-action="Edit">Create New</a>
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@for (int i = 0; i < Model.Rows.Count; i ++) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Model.Rows[i]["Title"]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Author)
+                @Model.Rows[i]["Author"]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @Model.Rows[i]["Price"]
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.BookId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BookId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@Model.Rows[i]["BookId"]">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@Model.Rows[i]["BookId"]">Delete</a>
             </td>
         </tr>
 }

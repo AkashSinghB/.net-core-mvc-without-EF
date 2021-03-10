@@ -5,24 +5,37 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using MvcCrudeWithoutEF_EntityFramework_.Data;
 using MvcCrudeWithoutEF_EntityFramework_.Models;
+using System.Data.SqlClient;
+using System.Data;
+
 
 namespace MvcCrudeWithoutEF_EntityFramework_.Controllers
 {
     public class BookController : Controller
     {
-        
+        private readonly IConfiguration _configuration;
 
-        public BookController()
+        public BookController(IConfiguration configuration)
         {
-          
+            this._configuration = configuration;
         }
 
         // GET: Book
         public IActionResult Index()
         {
-            return View();
+            DataTable dtbl = new DataTable();
+            //using block will take care of the connection closing we dont need to close the connection manually the using block automatically take care of that
+            using (SqlConnection Con = new SqlConnection(_configuration.GetConnectionString("DevConnection")))
+            {
+                Con.Open();
+                SqlDataAdapter sqlDa = new SqlDataAdapter("BooksSelectProc",Con);
+                sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                sqlDa.Fill(dtbl);
+            }
+            return View(dtbl);
         }
 
         
@@ -41,11 +54,24 @@ namespace MvcCrudeWithoutEF_EntityFramework_.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("BookId,Title,Author,Price")] BookViewModel bookViewModel)
+        public IActionResult Edit(BookViewModel bookViewModel)
         {
 
             if (ModelState.IsValid)
             {
+                //using block will take care of the connection closing we dont need to close the connection manually the using block automatically take care of that
+                using (SqlConnection Con = new SqlConnection(_configuration.GetConnectionString("DevConnection")))
+                {
+                    Con.Open();
+                    SqlCommand cmd = new SqlCommand("Books_Proc", Con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("BookId", bookViewModel.BookId);
+                    cmd.Parameters.AddWithValue("Title", bookViewModel.Title);
+                    cmd.Parameters.AddWithValue("Author", bookViewModel.Author);
+                    cmd.Parameters.AddWithValue("Price", bookViewModel.Price);
+                    cmd.Parameters.AddWithValue("calltype", "insert");
+                    cmd.ExecuteNonQuery();
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(bookViewModel);
@@ -55,7 +81,6 @@ namespace MvcCrudeWithoutEF_EntityFramework_.Controllers
         public IActionResult Delete(int? id)
         {
           
-
             return View();
         }
 

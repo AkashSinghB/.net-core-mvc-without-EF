@@ -112,13 +112,9 @@ E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFrame
 E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
 E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
 E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
 E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
-E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
-E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\obj\Debug\netcoreapp3.1\MvcCrudeWithoutEF(EntityFramework).csprojAssemblyReference.cache
 E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\obj\Debug\netcoreapp3.1\MvcCrudeWithoutEF(EntityFramework).AssemblyInfoInputs.cache
@@ -150,3 +146,13 @@ E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFrame
 E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\obj\Debug\netcoreapp3.1\Razor\Views\Book\Delete.cshtml.g.cs
 E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\obj\Debug\netcoreapp3.1\Razor\Views\Book\Edit.cshtml.g.cs
 E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\obj\Debug\netcoreapp3.1\Razor\Views\Book\Index.cshtml.g.cs
+E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+E:\asp.net core\MvcCrudeWithoutEF(EntityFramework)\MvcCrudeWithoutEF(EntityFramework)\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
