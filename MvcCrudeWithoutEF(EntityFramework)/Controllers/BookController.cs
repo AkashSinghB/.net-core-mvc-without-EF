@@ -31,8 +31,9 @@ namespace MvcCrudeWithoutEF_EntityFramework_.Controllers
             using (SqlConnection Con = new SqlConnection(_configuration.GetConnectionString("DevConnection")))
             {
                 Con.Open();
-                SqlDataAdapter sqlDa = new SqlDataAdapter("BooksSelectProc",Con);
+                SqlDataAdapter sqlDa = new SqlDataAdapter("Books_Proc",Con);
                 sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                sqlDa.SelectCommand.Parameters.AddWithValue("calltype", "selectAll");
                 sqlDa.Fill(dtbl);
             }
             return View(dtbl);
@@ -45,7 +46,10 @@ namespace MvcCrudeWithoutEF_EntityFramework_.Controllers
         public IActionResult Edit(int? id)
         {
             BookViewModel bookViewModel = new BookViewModel();
-
+            if(id > 0)
+            {
+                bookViewModel = FetchBookById(id);
+            }
             return View(bookViewModel);
         }
 
@@ -59,19 +63,37 @@ namespace MvcCrudeWithoutEF_EntityFramework_.Controllers
 
             if (ModelState.IsValid)
             {
+
                 //using block will take care of the connection closing we dont need to close the connection manually the using block automatically take care of that
                 using (SqlConnection Con = new SqlConnection(_configuration.GetConnectionString("DevConnection")))
-                {
-                    Con.Open();
-                    SqlCommand cmd = new SqlCommand("Books_Proc", Con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("BookId", bookViewModel.BookId);
-                    cmd.Parameters.AddWithValue("Title", bookViewModel.Title);
-                    cmd.Parameters.AddWithValue("Author", bookViewModel.Author);
-                    cmd.Parameters.AddWithValue("Price", bookViewModel.Price);
-                    cmd.Parameters.AddWithValue("calltype", "insert");
-                    cmd.ExecuteNonQuery();
-                }
+                    if (bookViewModel.BookId == 0)
+                    {
+
+
+                        Con.Open();
+                        SqlCommand cmd = new SqlCommand("Books_Proc", Con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("BookId", bookViewModel.BookId);
+                        cmd.Parameters.AddWithValue("Title", bookViewModel.Title);
+                        cmd.Parameters.AddWithValue("Author", bookViewModel.Author);
+                        cmd.Parameters.AddWithValue("Price", bookViewModel.Price);
+                        cmd.Parameters.AddWithValue("calltype", "insert");
+                        cmd.ExecuteNonQuery();
+
+
+                    }
+                    else
+                    {
+                        Con.Open();
+                        SqlCommand cmd = new SqlCommand("Books_Proc", Con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("BookId", bookViewModel.BookId);
+                        cmd.Parameters.AddWithValue("Title", bookViewModel.Title);
+                        cmd.Parameters.AddWithValue("Author", bookViewModel.Author);
+                        cmd.Parameters.AddWithValue("Price", bookViewModel.Price);
+                        cmd.Parameters.AddWithValue("calltype", "insert");
+                        cmd.ExecuteNonQuery();
+                    }
                 return RedirectToAction(nameof(Index));
             }
             return View(bookViewModel);
@@ -80,8 +102,8 @@ namespace MvcCrudeWithoutEF_EntityFramework_.Controllers
         // GET: Book/Delete/5
         public IActionResult Delete(int? id)
         {
-          
-            return View();
+            BookViewModel bookViewModel = FetchBookById(id);
+            return View(bookViewModel);
         }
 
         // POST: Book/Delete/5
@@ -89,10 +111,46 @@ namespace MvcCrudeWithoutEF_EntityFramework_.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-           
+
+            using (SqlConnection Con = new SqlConnection(_configuration.GetConnectionString("DevConnection")))
+            {
+                Con.Open();
+                SqlCommand cmd = new SqlCommand("Books_Proc", Con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("BookId",id);
+                cmd.Parameters.AddWithValue("calltype", "delete");
+                cmd.ExecuteNonQuery();
+            }
+
             return RedirectToAction(nameof(Index));
         }
 
-        
+        [NonAction]
+        public BookViewModel FetchBookById ( int? id )
+        {
+            BookViewModel bookViewModel = new BookViewModel();
+
+            using (SqlConnection Con = new SqlConnection(_configuration.GetConnectionString("DevConnection")))
+            {
+                DataTable dtbl = new DataTable();
+                Con.Open();
+                SqlDataAdapter sqlDa = new SqlDataAdapter("Books_Proc", Con);
+                sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                sqlDa.SelectCommand.Parameters.AddWithValue("BookId", id);
+                sqlDa.SelectCommand.Parameters.AddWithValue("calltype", "selectById");
+                sqlDa.Fill(dtbl);
+                if(dtbl.Rows.Count == 1)
+                {
+                    bookViewModel.BookId = Convert.ToInt32(dtbl.Rows[0]["BookId"].ToString());
+                    bookViewModel.Title = dtbl.Rows[0]["Title"].ToString();
+                    bookViewModel.Author = dtbl.Rows[0]["Author"].ToString();
+                    bookViewModel.Price = Convert.ToInt32(dtbl.Rows[0]["Price"].ToString());
+                }
+                return bookViewModel;
+            }
+
+        }
+    
+
     }
 }
